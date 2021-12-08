@@ -12,4 +12,15 @@ describe DockingStation do
     bike = Bike.new
     expect(bike.working?).to eq(true)
   end
+  it 'docks a bike' do
+    docking_station = DockingStation.new
+    bike = Bike.new
+    expect(docking_station.dock(bike)).to eq(bike)
+  end
+  it 'shows docked bikes' do
+    docking_station = DockingStation.new
+    bike = Bike.new
+    docking_station.dock(bike)
+    expect(docking_station.bike).to eq(bike)
+  end
 end
