@@ -5,6 +5,6 @@ describe DockingStation do
   it 'returns a new bike' do
     docking_station = DockingStation.new
     bike = Bike.new
-    expect(docking_station.release_bike).to eq(bike)
+    expect(docking_station.release_bike(bike)).to eq(bike)
   end
 end

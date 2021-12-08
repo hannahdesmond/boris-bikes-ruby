@@ -20,6 +20,3 @@ good_bike       | is_working?
 |person| -----use_a_good_bike----| 
        |<-------release_bike-----| docking_station | ---is_working?----> |bike |
                                                     <-------yes/no-------|
-
-
-
