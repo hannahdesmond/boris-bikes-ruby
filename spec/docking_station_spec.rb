@@ -7,4 +7,9 @@ describe DockingStation do
     bike = Bike.new
     expect(docking_station.release_bike(bike)).to eq(bike)
   end
+  it 'returns a working bike' do
+    docking_station = DockingStation.new
+    bike = Bike.new
+    expect(bike.working?).to eq(true)
+  end
 end
