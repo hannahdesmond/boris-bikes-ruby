@@ -4,14 +4,10 @@ class DockingStation
   attr_reader :bike
 
   def release_bike
-    if @bike == nil 
-      puts "I am in the if clause"
-      bike = Bike.new 
-      puts "I am the new #{bike}"
-    else 
-      puts "I am in the else clause"
+    if @bike != nil 
       raise("There are no bikes available")
-      puts "I am after the exception"
+    else 
+      @bike = Bike.new 
     end
   end
 
