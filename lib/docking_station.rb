@@ -28,3 +28,10 @@ class DockingStation
     true if @bikes.length < 1
   end
 end
+
+# at the moment, release bike is creating a new bike instead of releasing 
+# one already in the docking station.
+# I want to dock an existing bike 
+# I want to release that same bike.
+# releasing that bike will return that bike from the array
+# could I iterate over the array and return only one bike if it is working? 
