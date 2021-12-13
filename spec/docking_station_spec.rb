@@ -1,6 +1,11 @@
 require 'docking_station'
 
 describe DockingStation do
+  let(:bike) { double :bike }
+  before do
+    allow(bike).to receive(:broken).and_return(false)
+    allow(bike).to receive(:report_broken).and_return(:true)
+  end
   context 'a new docking station' do 
     it 'stores a collecion of bikes' do
       expect(subject.bikes).to eq([])
@@ -14,26 +19,27 @@ describe DockingStation do
     end
   end
   context 'releases and docks bikes' do 
+    before do
+      allow(bike).to receive(:broken).and_return(false)
+      allow(bike).to receive(:report_broken).and_return(true)
+    end
     it 'releases working bikes' do
-      bike = Bike.new
       subject.dock(bike)
-      subject.release_bike
-      expect(bike.broken).to eq(false)
+      bike = subject.release_bike
+      expect(bike.broken).to eq(false) 
     end
     it 'only releases one bike' do
-      first_bike = Bike.new
-      second_bike = Bike.new
-      subject.dock(first_bike)
+      first_bike = bike
+      second_bike = bike
+      subject.dock(first_bike) 
       subject.dock(second_bike)
       expect(subject.release_bike).to eq(first_bike)
     end
     it 'docks a bike' do
-      bike = Bike.new
       subject.dock(bike)
       expect(subject.bikes).to eq([bike])
     end
     it 'shows docked bikes' do
-      bike = Bike.new
       subject.dock(bike)
       expect(subject.bikes).to eq([bike])
     end
@@ -43,16 +49,15 @@ describe DockingStation do
       expect { subject.release_bike }.to raise_error("There are no bikes available")
     end
     it 'throws an error for #dock(bike) if the docking station is full' do
-      bike = Bike.new
       subject.dock(bike)
       expect { subject.dock(bike).to raise_error("The docking station is full") }
     end
   end
   context 'broken bikes' do
     it 'does not release broken bikes' do
-      first_bike = Bike.new
-      second_bike = Bike.new
-      first_bike.report_broken
+      first_bike = bike
+      second_bike = bike
+      first_bike.report_broken 
       subject.dock(first_bike)
       subject.dock(second_bike)
       expect(subject.release_bike).to eq(second_bike)
