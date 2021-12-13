@@ -14,12 +14,18 @@ describe DockingStation do
     end
   end
   context 'releases and docks bikes' do 
-    it { is_expected.to respond_to(:release_bike) }
     it 'releases working bikes' do
       bike = Bike.new
       subject.dock(bike)
       subject.release_bike
       expect(bike.broken).to eq(false)
+    end
+    it 'only releases one bike' do
+      first_bike = Bike.new
+      second_bike = Bike.new
+      subject.dock(first_bike)
+      subject.dock(second_bike)
+      expect(subject.release_bike).to eq(first_bike)
     end
     it 'docks a bike' do
       bike = Bike.new
@@ -43,9 +49,13 @@ describe DockingStation do
     end
   end
   context 'broken bikes' do
-    it 'allows users to report broken bikes' do
-      
-      # expect bike instance to be broken
+    it 'does not release broken bikes' do
+      first_bike = Bike.new
+      second_bike = Bike.new
+      first_bike.report_broken
+      subject.dock(first_bike)
+      subject.dock(second_bike)
+      expect(subject.release_bike).to eq(second_bike)
     end
   end
 end

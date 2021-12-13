@@ -11,7 +11,11 @@ class DockingStation
   end
 
   def release_bike
-    !empty? ? Bike.new : raise("There are no bikes available")
+    if @bikes.length >= 1
+      bike_to_ride = @bikes.delete_at(@bikes.index {|bike| bike.broken == false } )
+    else
+      raise("There are no bikes available")
+    end
   end
 
   def dock(bike)
