@@ -38,3 +38,25 @@ bike            | is_docked?
 As a member of the public,
 So that I am not confused and charged unnecessarily,
 I'd like docking stations not to release bikes when there are none available.
+
+
+
+
+## Step 21
+
+```
+As a maintainer of the system,
+So that I can manage broken bikes and not disappoint users,
+I'd like vans to take broken bikes from docking stations and deliver them to garages to be fixed.
+
+As a maintainer of the system,
+So that I can manage broken bikes and not disappoint users,
+I'd like vans to collect working bikes from garages and distribute them to docking stations.
+```
+
+* vans take broken bikes from docking stations 
+* so vans hold their own collection of bikes?
+* garage fixes bikes
+* garage accepts collections of bikes
+* garage changes bikes status to working
+* garage delivers bikes to docking stations, enters bikes into collection
