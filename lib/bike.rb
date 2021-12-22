@@ -9,5 +9,9 @@ class Bike
     @broken = true
   end
 
+  def bike_fixed
+    @broken = false
+  end
+
 end
 

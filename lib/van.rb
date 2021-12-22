@@ -11,11 +11,9 @@ class Van
 
   def collect(bikes)
     bikes.map! do |bike| 
-      if bike.broken == true
-        while @bikes.length < DEFAULT_CAPACITY do
-          @bikes << bike
-          bikes.shift
-        end
+      while @bikes.length < DEFAULT_CAPACITY do
+        @bikes << bike
+        bikes.shift
       end
     end
   end
