@@ -20,5 +20,7 @@ class Van
     end
   end
 
-
+  def deliver(repair_location)
+    repair_location << @bikes
+  end
 end
