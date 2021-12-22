@@ -3,11 +3,13 @@ require_relative 'van'
 
 class DockingStation
   attr_reader :bikes
+  attr_reader :broken_bikes
   attr_reader :capacity
   DEFAULT_CAPACITY = 20
 
   def initialize(capacity=DEFAULT_CAPACITY)
     @bikes = []
+    @broken_bikes = []
     @capacity = capacity
   end
 
@@ -20,13 +22,18 @@ class DockingStation
   end
 
   def dock(bike)
-    full? ? raise("The docking station is full") : @bikes << bike
+    raise("The docking station is full") if full? 
+    if bike.broken == false
+      @bikes << bike
+    else
+      @broken_bikes << bike
+    end
   end
 
   private 
 
   def full?
-    true if @bikes.length == DEFAULT_CAPACITY
+    true if @bikes.length + @broken_bikes.length == DEFAULT_CAPACITY
   end
 
   def empty?
