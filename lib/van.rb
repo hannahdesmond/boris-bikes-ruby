@@ -11,14 +11,21 @@ class Van
 
   def collect(bikes)
     bikes.map! do |bike| 
-      while @bikes.length < DEFAULT_CAPACITY do
+      bikes.length.times do
         @bikes << bike
         bikes.shift
+        break if full?
       end
     end
   end
 
-  def deliver(repair_location)
-    repair_location << @bikes
+  def deliver(delivery_location)
+    @bikes.each do |bike|
+      delivery_location << bike 
+    end
+  end
+
+  def full?
+    @bikes.length == DEFAULT_CAPACITY
   end
 end
