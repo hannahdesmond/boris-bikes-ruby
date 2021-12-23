@@ -2,18 +2,7 @@ require 'van'
 require 'bike'
 
 describe Van do
-  it 'stores bikes in the van on the way to the station' do
-      expect(subject.bikes).to eq([])
-  end
-  describe 'capacity' do 
-    let(:broken_bike) { instance_double(Bike, broken: true) }
-    let(:docking_station) { instance_double(DockingStation, broken_bikes: [broken_bike] * 11) }
-    it 'has a capacity of 10' do
-      subject.collect(docking_station.broken_bikes)
-      expect(subject.bikes.length).to eq(10)
-      expect(docking_station.broken_bikes.length).to eq(1)
-    end
-  end
+  include_examples 'bike container'
   describe 'collecting broken bikes' do 
   let(:bike) { instance_double(Bike, broken: false) }
   let(:broken_bike) { instance_double(Bike, broken: true) }

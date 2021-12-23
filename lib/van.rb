@@ -2,12 +2,7 @@ require_relative 'bike'
 require_relative 'docking_station'
 
 class Van
-  attr_reader :bikes
-  DEFAULT_CAPACITY = 10
-
-  def initialize
-    @bikes = []
-  end
+  include BikeContainer
 
   def collect(bikes)
     bikes.map! do |bike| 

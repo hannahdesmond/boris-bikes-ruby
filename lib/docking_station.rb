@@ -2,16 +2,10 @@ require_relative 'bike'
 require_relative 'van'
 
 class DockingStation
-  attr_reader :bikes
-  attr_reader :broken_bikes
-  attr_reader :capacity
+  include BikeContainer
+
   DEFAULT_CAPACITY = 20
 
-  def initialize(capacity=DEFAULT_CAPACITY)
-    @bikes = []
-    @broken_bikes = []
-    @capacity = capacity
-  end
 
   def release_bike
     if @bikes.length >= 1

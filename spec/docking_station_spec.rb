@@ -1,22 +1,11 @@
 require 'docking_station'
 
 describe DockingStation do
+  include_examples 'bike container'
   let(:bike) { double :bike }
   before do
     allow(bike).to receive(:broken).and_return(false)
     allow(bike).to receive(:report_broken).and_return(:true)
-  end
-  context 'a new docking station' do 
-    it 'stores a collecion of bikes' do
-      expect(subject.bikes).to eq([])
-    end
-    it 'has a default capacity of 20' do
-      expect(subject.capacity).to eq(20)
-    end
-    it 'allows a capacity to be set' do
-      docking_station = DockingStation.new(30)
-      expect(docking_station.capacity).to eq(30)
-    end
   end
   context 'releases and docks bikes' do 
     before do

@@ -1,11 +1,8 @@
 require_relative 'bike'
 
 class Garage
-  attr_reader :bikes
-  
-  def initialize
-    @bikes = []
-  end
+
+  include BikeContainer
 
   def fix
     @bikes.map do |bike|
